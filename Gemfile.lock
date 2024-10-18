@@ -1,0 +1,25 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    bigdecimal (3.1.6)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
+    mini_mime (1.1.5)
+    multi_xml (0.6.0)
+    pg (1.5.5)
+    sequel (5.77.0)
+      bigdecimal
+    sqlite3 (1.7.2-x86_64-linux)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  httparty (~> 0.21.0)
+  pg (~> 1.5)
+  sequel (~> 5.77)
+  sqlite3 (~> 1.7)
+
+BUNDLED WITH
+   2.4.17

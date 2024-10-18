@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=edusenseDBpwd
+      - POSTGRES_USER=postgres_user
+      - POSTGRES_DB=edusense_db
+    ports:
+      - "5432:5432"
+  app:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres_user:edusenseDBpwd@db:5432/edusense_db
+  grafana:
+    image: grafana/grafana:latest
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: "edusense_admin"
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - grafana_data:/var/lib/grafana
+
+volumes:
+  postgres_data:
+  grafana_data:

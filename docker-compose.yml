@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    networks:
+      app-network:
+        ipv4_address: 172.16.0.24 
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgres://postgres_user:edusenseDBpwd@172.16.0.10:5432/edusense_db
+    hostname: edusense_app
+    container_name: edusense
+    restart: always
+
+networks:
+  app-network:
+    external: true
